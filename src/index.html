@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <link rel="stylesheet" href="./output.css">
+</head>
+<body class="min-h-screen bg-[#121212] flex justify-center items-center">
+
+  <div class="relative flex flex-col justify-center items-center">
+
+    <!-- toggle btn -->
+    <button id="toggle" class="h-10 w-50 bg-neutral-700 text-xl text-black flex justify-center items-center mb-2">Standard</button>
+
+    <!-- INPUT (shared) -->
+    <div id="display" class="w-full bg-[#333232] mb-2">
+      <input type="text" id="input-wrapper" class="w-160 h-20 caret-green-600 pl-2 font-bold text-6xl outline-none bg-transparent text-stone-300" />
+    </div>
+
+    <!-- Wrapper -->
+    <div class="flex">
+
+      <!-- Scientific Panel (LEFT) -->
+      <div
+        id="scientific"
+        class="hidden w-80 h-150 bg-neutral-800 p-2 grid grid-rows-5 grid-cols-2 gap-2">
+
+        <button class="btn-sci">sin</button>
+        <button class="btn-sci">cos</button>
+        <button class="btn-sci">tan</button>
+        <button class="btn-sci">x²</button>
+        <button class="btn-sci">√</button>
+        
+
+        <button class="btn-sci">log</button>
+        <button class="btn-sci">(</button>
+        <button class="btn-sci">)</button>
+        <button class="btn-sci">ln</button>
+        <button class="btn-sci">π</button>
+      </div>
+
+      <!-- Simple Calculator -->
+      <div class="w-160 h-150 bg-neutral-800 p-2">
+        <div class="h-full w-full grid grid-cols-4 grid-rows-5 gap-2">
+
+
+
+          <button class="btn-danger">AC</button>
+          <button class="btn-o">/</button>
+          <button class="btn-o">x</button>
+          <button class="btn-o">Clr</button>
+
+          <button class="btn">7</button>
+          <button class="btn">8</button>
+          <button class="btn">9</button>
+          <button class="btn-o">-</button>
+
+          <button class="btn">4</button>
+          <button class="btn">5</button>
+          <button class="btn">6</button>
+          <button class="btn-o">+</button>
+
+          <button class="btn">1</button>
+          <button class="btn">2</button>
+          <button class="btn">3</button>
+          <button class="btn-eq row-span-2">=</button>
+
+          <button class="btn col-span-2">0</button>
+          <button class="btn">.</button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>

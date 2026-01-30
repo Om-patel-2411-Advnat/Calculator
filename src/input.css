@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@layer components{
+
+    .btn{
+        @apply bg-[#2A2A2A] text-white hover:bg-[#3A3A3A] active:bg-[#1F1F1F] rounded-lg text-2xl font-semibold transition;
+    }
+
+    .btn-o{
+        @apply bg-[#FF9500] text-white hover:bg-[#FFB347] active:bg-[#CC7700] rounded-lg text-2xl font-bold transition;
+    }  
+
+    .btn-sci{
+        @apply bg-[#3B82F6] text-white hover:bg-[#60A5FA] active:bg-[#1D4ED8] rounded-lg text-xl font-semibold transition;
+    }
+    .btn-danger{
+        @apply bg-[#EF4444] text-white hover:bg-[#F87171] active:bg-[#B91C1C] rounded-lg text-2xl font-bold transition;
+    }
+    .btn-eq{
+        @apply bg-[#22C55E] text-white hover:bg-[#4ADE80] active:bg-[#15803D] rounded-lg text-2xl font-bold transition;
+    }
+
+
+
+}
