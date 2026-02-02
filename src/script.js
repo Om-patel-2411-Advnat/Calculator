@@ -168,23 +168,26 @@ function devide(a, b) {
         }
         return (a / b);
 }
+function toRadians(angle){
+    return isDegreeMode ? angle * Math.PI / 180 : angle;
+}
 function sin(a){
-    return Math.sin(a * Math.PI / 180);
+    return Math.sin(toRadians(a));
 }
 function cos(a){
-    return Math.cos(a * Math.PI / 180);
+    return Math.cos(toRadians(a));
 }
 function tan(a){
-    return Math.tan(a * Math.PI / 180);
+    return Math.tan(toRadians(a));
 }
 function cosec(a){
-    return 1 / Math.sin(a * Math.PI / 180);
+    return 1 / Math.sin(toRadians(a));
 }
 function sec(a){
-    return 1 / Math.cos(a * Math.PI / 180);
+    return 1 / Math.cos(toRadians(a));
 }
 function cot(a){
-    return 1 / Math.tan(a * Math.PI / 180);    
+    return 1 / Math.tan(toRadians(a));    
 }
 function log(a){
     if(a < 0){
@@ -547,3 +550,14 @@ Memory_btn.forEach(btn =>{
         memory_display.textContent = memory;    
     })
 })
+
+const degBtn = [...document.querySelectorAll('.btn-sci')].find(btn => btn.textContent.trim().toLowerCase() === 'deg');
+
+let isDegreeMode = true;
+
+degBtn.addEventListener('click', () => {
+    isDegreeMode = !isDegreeMode;
+    degBtn.textContent = isDegreeMode ? "deg" : "rad";
+});
+
+
