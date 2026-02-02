@@ -13,6 +13,9 @@
     .btn-sci{
         @apply bg-[#3B82F6] text-white hover:bg-[#60A5FA] active:bg-[#1D4ED8] rounded-lg text-xl font-semibold transition;
     }
+    .btn-M{
+        @apply bg-[#3B82F6] text-white hover:bg-[#60A5FA] active:bg-[#1D4ED8] rounded-lg text-xl font-semibold transition;
+    }
     .btn-danger{
         @apply bg-[#EF4444] text-white hover:bg-[#F87171] active:bg-[#B91C1C] rounded-lg text-2xl font-bold transition;
     }

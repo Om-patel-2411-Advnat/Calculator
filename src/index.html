@@ -11,7 +11,7 @@
     <div class="relative flex flex-col justify-center items-center">
 
       <!-- toggle btn -->
-      <button id="toggle" class="h-10 w-50 bg-neutral-700 text-xl text-black flex justify-center items-center mb-2">Standard</button>
+      <button id="toggle" class="h-10 w-50 bg-neutral-700 text-xl text-black flex justify-center items-center mb-2 rounded-3xl">Standard</button>
 
       <!-- INPUT (shared) -->
       <div id="display" class="w-full bg-[#333232] mb-2">
@@ -21,11 +21,11 @@
       <!-- Wrapper -->
       <div class="flex">
 
-      <!-- Scientific Panel (LEFT) -->
+        <!-- Scientific Panel (LEFT) -->
         <div id="scientific" class="hidden w-80 h-150 bg-neutral-800 py-2 pl-2 grid grid-cols-2 gap-2">
 
           <button class="btn-sci">deg</button>
-          <button class="btn-sci">MC</button>
+          <button class="btn-M">MC</button>
           <button class="btn-sci">sin</button>              
           <button class="btn-sci">cos</button>
           <button class="btn-sci">n!</button>
@@ -50,10 +50,10 @@
             <!-- Extra rows for Scientific mode -->
             <div id="extra-rows" class="hidden col-span-4 row-span-2 grid grid-cols-4 gap-2">
 
-              <button class="btn-sci">MR</button>
-              <button class="btn-sci">M+</button>
-              <button class="btn-sci">M-</button>
-              <button class="btn-sci">Ms</button>
+              <button class="btn-M">MR</button>
+              <button class="btn-M">M+</button>
+              <button class="btn-M">M-</button>
+              <button class="btn-M">MS</button>
 
               <button class="btn-sci">tan</button>
               <button class="btn-sci">cosec</button>
@@ -86,6 +86,16 @@
             <button class="btn">.</button>
 
           </div>
+        </div>
+        <!-- memory pannel -->
+        <div id="memory-panel" class="hidden w-60 h-150 bg-neutral-800 p-2 ml-2 flex flex-col">
+
+          <div class="text-stone-400 text-sm mb-2">Memory</div>
+
+          <div id="memory-display" class="h-12 bg-[#333232] text-stone-300 flex items-center justify-end pr-2 mb-2 rounded">
+            0
+          </div>
+
         </div>
 
       </div>

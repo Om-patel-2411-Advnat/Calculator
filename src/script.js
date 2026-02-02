@@ -3,6 +3,7 @@ const extra_rows = document.getElementById("extra-rows");
 const Standard = document.getElementById("standard-grid");
 const scientific = document.getElementById("scientific");
 let inputWrapper = document.getElementById("input-wrapper");
+const memory_pannel = document.getElementById("memory-panel");
 
 let isScientific = false;
 
@@ -17,6 +18,8 @@ toggleBtn.addEventListener("click", () => {
 
         scientific.classList.remove("hidden");
         extra_rows.classList.remove("hidden");
+        memory_pannel.classList.remove("hidden");
+        
 
         Standard.classList.remove("grid-rows-5");
         Standard.classList.add("grid-rows-7");
@@ -27,6 +30,7 @@ toggleBtn.addEventListener("click", () => {
 
         scientific.classList.add("hidden");
         extra_rows.classList.add("hidden");
+        memory_pannel.classList.add("hidden");
 
         Standard.classList.remove("grid-rows-7");
         Standard.classList.add("grid-rows-5");
@@ -205,6 +209,12 @@ function tenpower(a){
     return Math.pow(10 , a);
 }
 function factorial(a){
+
+    if(a < 1){
+        inputWrapper.value = 'Error';
+        display_value = '';
+        throw new Error("Factorial for less than 1 is not posible");
+    }
     let r = 1 ;
     for (let i = 1 ; i <= a ;i++){
         r *= i;
@@ -369,7 +379,7 @@ sci_buttons.forEach(btn =>{
             if('+-/x'.includes(lastchar)){
                 display_value += '(ln(';
                 inputWrapper.value = display_value;
-            }else if(display_value == ''){
+            }else if(display_value == '' || '('.includes(lastchar)){
                 display_value += 'ln('
                 inputWrapper.value = display_value;
             }
@@ -379,7 +389,7 @@ sci_buttons.forEach(btn =>{
             if('+-/x'.includes(lastchar)){
                 display_value += '(log(';
                 inputWrapper.value = display_value;
-            }else if(display_value == ''){
+            }else if(display_value == '' || '('.includes(lastchar)){
                 display_value += 'log('
                 inputWrapper.value = display_value;
             }
@@ -402,6 +412,8 @@ function bracketbalance(exp){
 function converttoTokens(exp){
     exp = bracketbalance(exp);
 
+    exp = exp.replace(/π/g, Math.PI);
+
     const tokens = exp.match(/cosec|sin|cos|tan|log|sec|cot|ln|√|π|10\^|x²|!|\d+\.?\d*|[()+\-x/^%]/g);
 
     return tokens || []; 
@@ -409,7 +421,14 @@ function converttoTokens(exp){
 
 function evaluate(tokens){
 
-    const functions = ['sin','cos','tan','cot','cosec','sec','log','ln','√','!'];
+    const functions = ['sin','cos','tan','cot','cosec','sec','log','ln','√'];
+
+    for(let i=0; i<tokens.length; i++){
+        if(tokens[i] === '-' && (i === 0 || ['(','+','-','x','/','^'].includes(tokens[i-1]))){
+            tokens[i+1] = -tokens[i+1];
+            tokens.splice(i,1);
+        }
+    }
 
     while(tokens.includes('(')){
 
@@ -425,7 +444,6 @@ function evaluate(tokens){
             let result;
 
             if(t == '√') result = squareroot(value);
-            if(t == '!') result = factorial(value);
             if(t == 'sin') result = sin(value);
             if(t == 'cos') result = cos(value);
             if(t == 'tan') result = tan(value);
@@ -455,10 +473,13 @@ function evaluate(tokens){
             let value = tokens[i-1] ** tokens[i+1];
             tokens.splice(i-1 , 3 ,value);
             i--;
-        }
-        if(tokens[i] === '%'){
+        }else if(tokens[i] === '%'){
             let value = percentage(tokens[i-1]);
             tokens.splice(i-1,2,value);
+            i--;
+        }else if(tokens[i] === '!'){
+            let value = factorial(tokens[i-1]);
+            tokens.splice(i-1 , 2 ,value);
             i--;
         }
     }
@@ -496,3 +517,33 @@ function sciCalculate(){
     let result = evaluate(tokens);
     return result;
 }
+
+
+// memory pannel
+ 
+let memory_display = document.getElementById('memory-display');
+const Memory_btn = document.querySelectorAll('.btn-M');
+
+let memory = 0;
+
+Memory_btn.forEach(btn =>{
+    btn.addEventListener('click' , function(e){
+
+        let text = e.target.textContent;
+        let value  = Number(inputWrapper.value) || 0;
+
+        if(text == 'MC'){
+            memory = 0 ;
+        }else if(text == 'MR'){
+            inputWrapper.value = memory;
+            display_value = memory.toString();
+        }else if(text == 'M+'){
+            memory += value;
+        }else if(text == 'M-'){
+            memory -= value;
+        }else if(text == 'MS'){
+            memory = value;
+        }
+        memory_display.textContent = memory;    
+    })
+})
