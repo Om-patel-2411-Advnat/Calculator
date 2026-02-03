@@ -230,7 +230,10 @@ function percentage(a){
 function squareroot(a){
     return Math.sqrt(a);
 }
-
+function roundoff(a){
+    let result = parseFloat(parseFloat(a).toFixed(3));  
+    return result;
+}
 
 //  equal to button 
 document.querySelector('.btn-eq').addEventListener('click' , function(){
@@ -247,6 +250,7 @@ document.querySelector('.btn-eq').addEventListener('click' , function(){
 
     if(result !== null){
         display_value = '';
+        result = roundoff(result);
         inputWrapper.value = result;
     }
 })
@@ -518,6 +522,7 @@ function evaluate(tokens){
 function sciCalculate(){
     let tokens = converttoTokens(display_value);
     let result = evaluate(tokens);
+    console.log(result);
     return result;
 }
 

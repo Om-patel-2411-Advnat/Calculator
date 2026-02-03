@@ -22,7 +22,4 @@
     .btn-eq{
         @apply bg-[#22C55E] text-white hover:bg-[#4ADE80] active:bg-[#15803D] rounded-lg text-2xl font-bold transition;
     }
-
-
-
 }
