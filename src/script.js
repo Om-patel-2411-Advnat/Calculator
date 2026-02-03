@@ -309,6 +309,7 @@ function claculate(operands , operators){
 
 const sci_buttons = document.querySelectorAll('.btn-sci');
 
+// for scientific calculator buttons
 sci_buttons.forEach(btn =>{
     btn.addEventListener('click' , function(e){
 
@@ -406,6 +407,7 @@ sci_buttons.forEach(btn =>{
     })
 })
 
+// balance the brackets
 function bracketbalance(exp){
     let openbracket = (exp.match(/\(/g) || []).length;
     let closebracket = (exp.match(/\)/g) || []).length;
@@ -416,6 +418,8 @@ function bracketbalance(exp){
     }
     return exp ;
 }
+
+// convert the display value to tokens
 function converttoTokens(exp){
     exp = bracketbalance(exp);
 
@@ -426,6 +430,7 @@ function converttoTokens(exp){
     return tokens || []; 
 }
 
+// evaluate the tokens, calculate the answer
 function evaluate(tokens){
 
     const functions = ['sin','cos','tan','cot','cosec','sec','log','ln','√'];
@@ -519,6 +524,7 @@ function evaluate(tokens){
     return tokens[0];
 }
 
+// scientific calculator function
 function sciCalculate(){
     let tokens = converttoTokens(display_value);
     let result = evaluate(tokens);
@@ -556,6 +562,7 @@ Memory_btn.forEach(btn =>{
     })
 })
 
+// deg and rad button
 const degBtn = [...document.querySelectorAll('.btn-sci')].find(btn => btn.textContent.trim().toLowerCase() === 'deg');
 
 let isDegreeMode = true;
